@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do App</title>
+   
+</head>
+<body>
+    <div class="container">
+        <h1>La nostra To-Do App</h1>
+        <form class="form">
+            <input type="text" id="inputAttivita" placeholder="Inserisci una nuova attività">
+            <button onclick="aggiungiAttivita()">Aggiungi</button>
+        </form>
+        <ul id="listaAttivita"></ul>
+       
+    </div>
+   
+   
+   
+
+
+   
+   
+
+
+    <script>
+        /*
+            Recuperiamo le attività dal localStorage.
+            Se non esistono dati salvati, usiamo un array vuoto.
+        */
+        let attivita = JSON.parse(localStorage.getItem("attivita")) || [];
+
+
+        /*
+            Salva l'array delle attività nel browser
+        */
+        function salvaAttivita() {
+            localStorage.setItem("attivita", JSON.stringify(attivita));
+        }
+
+
+        /*
+            Mostra tutte le attività nella pagina HTML
+        */
+        function mostraAttivita() {
+            const lista = document.getElementById("listaAttivita");
+
+
+            // Svuota la lista prima di ridisegnarla
+            lista.innerHTML = "";
+
+
+            //forEach scorre tutte le attività presenti nell'array
+
+
+            attivita.forEach((singolaAttivita, indice) => {
+                const elementoLista = document.createElement("li");
+
+
+                // Checkbox per segnare l'attività come completata
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.checked = singolaAttivita.completata;
+
+
+                // Quando la checkbox cambia stato
+                checkbox.onchange = () => cambiaStatoAttivita(indice);
+
+
+                // Testo dell'attività
+                const testo = document.createElement("span");
+                testo.textContent = singolaAttivita.testo;
+
+
+                // Pulsante per eliminare l'attività
+                const bottoneElimina = document.createElement("button");
+                bottoneElimina.textContent = "Elimina";
+                bottoneElimina.onclick = () => eliminaAttivita(indice);
+
+
+                // Inseriamo tutti gli elementi nel <li>
+                elementoLista.appendChild(checkbox);
+                elementoLista.appendChild(testo);
+                elementoLista.appendChild(bottoneElimina);
+
+
+                // Inseriamo il <li> nella lista
+                lista.appendChild(elementoLista);
+            });
+        }
+
+
+       
+            //Aggiunge una nuova attività all'array
+       
+        function aggiungiAttivita() {
+            const input = document.getElementById("inputAttivita");
+            const testoInserito = input.value.trim();
+
+
+            // Se il campo è vuoto, non fa nulla
+            if (testoInserito === "") return;
+
+
+            /*
+                Aggiungiamo un nuovo oggetto all'array
+                completata parte sempre da false
+            */
+            attivita.push({
+                testo: testoInserito,
+                completata: false
+            });
+
+
+            // Svuota il campo di input
+            input.value = "";
+
+
+            salvaAttivita();
+            mostraAttivita();
+        }
+
+
+        /*
+            Cambia lo stato dell'attività
+        */
+        function cambiaStatoAttivita(indice) {
+
+
+            attivita[indice].completata = !attivita[indice].completata;
+
+
+            salvaAttivita();
+            mostraAttivita();
+        }
+
+
+        /*
+            Elimina un'attività dall'array
+        */
+        function eliminaAttivita(indice) {
+            /*
+                splice rimuove elementi da un array
+                indice = posizione
+                1 = numero di elementi da eliminare
+            */
+            attivita.splice(indice, 1);
+
+
+            salvaAttivita();
+            mostraAttivita();
+        }
+
+
+        // Mostra le attività quando la pagina viene caricata
+        mostraAttivita();
+    </script>
+
+
+</body>
+</html>
