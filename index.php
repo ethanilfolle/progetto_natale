@@ -20,6 +20,27 @@ $risultato = mysqli_query($conn, "SELECT * FROM attivita WHERE id_utente = $id_u
 <!DOCTYPE html>
 <html>
 <body>
+<head>
+<style>
+    body {
+        font-family: Arial;
+        background: #eee;
+    }
+
+    form {
+        width: 200px;
+        margin: 100px auto;
+        padding: 10px;
+        background: white;
+        border: 1px solid #ccc;
+    }
+
+    input, button {
+        width: 100%;
+        margin-top: 5px;
+    }
+</style>
+</head>
 
     <h1>Ciao <?= $_SESSION["username"] ?></h1>
     <a href="logout.php">Logout</a>
