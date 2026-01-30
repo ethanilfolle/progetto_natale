@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>Todo App</title>
-
-    <?php
+<?php
 session_start();
 $conn = mysqli_connect("localhost", "root", "", "todo_app");
 
