@@ -35,9 +35,9 @@ VALUES ('Preparare interrogazione', 2);
 
 SELECT * FROM attivita WHERE id_utente = 1;
 
-SELECT * testo FROM attivita WHERE id_utente = 1 AND completata = FALSE;
+SELECT testo FROM attivita WHERE id_utente = 1 AND completata = FALSE;
 
-SELECT * utente.nome, attivita.testo, attivita.completata FROM utente JOIN attivita ON utente.id_utente = attivita.id_utente;
+SELECT utente.nome, attivita.testo, attivita.completata FROM utente JOIN attivita ON utente.id_utente = attivita.id_utente;
 
 DELETE FROM attivita WHERE id_attivita = 2;
 
