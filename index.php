@@ -23,21 +23,44 @@ $risultato = mysqli_query($conn, "SELECT * FROM attivita WHERE id_utente = $id_u
 <head>
 <style>
     body {
-        font-family: Arial;
-        background: #eee;
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
     }
 
     form {
-        width: 200px;
-        margin: 100px auto;
-        padding: 10px;
-        background: white;
-        border: 1px solid #ccc;
+        width: 260px;
+        margin: 120px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
     }
 
-    input, button {
+    h3 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    input {
         width: 100%;
-        margin-top: 5px;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 100%;
+        padding: 8px;
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #555;
     }
 </style>
 </head>
